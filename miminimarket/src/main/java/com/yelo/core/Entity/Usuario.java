@@ -1,6 +1,8 @@
 package com.yelo.core.Entity;
 
 import java.util.Calendar;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,17 +16,17 @@ public class Usuario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	@NotNull
+	@Column(name="name", nullable=true)
 	private String name;
-	@NotNull
+	@Column(name="password", nullable=false)
 	private String password;
-	@NotNull
+	@Column(name="email", nullable=false)
 	private String email;
-	@NotNull
+	@Column(name="cellphone", nullable=false)
 	private String cellphone;
-	@NotNull
+	@Column(name="birthday", nullable=false)
 	private Calendar birthday;
-	@NotNull
+	@Column(name = "type", nullable = false)
 	private String type;
 	
 	
