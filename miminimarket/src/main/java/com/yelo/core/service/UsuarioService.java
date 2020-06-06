@@ -59,4 +59,5 @@ public class UsuarioService {
 	public boolean existByEmail(String email) {
 		return usuarioRepository.existsByEmail(email);
 	}
+	
 }
