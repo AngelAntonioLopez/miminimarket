@@ -71,7 +71,7 @@ public class ProductoController {
 	@GetMapping("/name/{nombre}")
 	public ResponseEntity<Producto> getByNombre(@PathVariable("nombre") String nombre){
 		if(!productoService.existByName(nombre)) {
-			return new ResponseEntity(new Mensaje("No eciste ese producto"), HttpStatus.NOT_FOUND);
+			return new ResponseEntity(new Mensaje("No existe ese producto"), HttpStatus.NOT_FOUND);
 		}else {
 			Producto producto = productoService.getByName(nombre).get();
 			return new  ResponseEntity<Producto>(producto, HttpStatus.OK);
@@ -83,6 +83,7 @@ public class ProductoController {
 		if(StringUtils.isBlank(productoDto.getName())
 		|| StringUtils.isBlank(productoDto.getDescription())
 		|| StringUtils.isBlank(productoDto.getImg())
+		|| StringUtils.isBlank(productoDto.getStatus())
 		|| productoDto.getPrice() < 0 )
 		{
 			return new ResponseEntity(new Mensaje("Todos los campos son obligatorios"), HttpStatus.BAD_REQUEST);
@@ -90,11 +91,9 @@ public class ProductoController {
 		if(productoService.existByName(productoDto.getName())) {
 			return new ResponseEntity(new Mensaje("Ya tenemos un producto con ese nombre"), HttpStatus.BAD_REQUEST);
 		}
-		if(productoService.existByCode(productoDto.getCode())) {
-			return new ResponseEntity(new Mensaje("Ya tenemos un producto con ese Codigo"), HttpStatus.BAD_REQUEST);
-		}
 		
-		Producto producto = new Producto(productoDto.getName(), productoDto.getDescription(), productoDto.getImg(), productoDto.getStatus(), productoDto.getCode(), productoDto.getPrice());
+		
+		Producto producto = new Producto(productoDto.getName(), productoDto.getDescription(), productoDto.getImg(), productoDto.getStatus(),  productoService.generateCode() , productoDto.getPrice());
 		
 		
 		productoService.save(producto);

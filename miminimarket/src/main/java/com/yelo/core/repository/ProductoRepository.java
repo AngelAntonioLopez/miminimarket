@@ -11,10 +11,10 @@ import com.yelo.core.Entity.Producto;
 public interface ProductoRepository extends JpaRepository<Producto, Integer> {
 	
 	Optional<Producto> findByName(String name);
-	boolean existByName(String name);
+	boolean existsByName(String name);
 	
 	Optional<Producto> findByCode(String code);
-	boolean existByCode(String code);
+	boolean existsByCode(String code);
 	
 
 }

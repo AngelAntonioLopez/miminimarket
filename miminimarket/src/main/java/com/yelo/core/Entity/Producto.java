@@ -19,7 +19,7 @@ public class Producto {
 	@Column(nullable = false)
 	private String img;
 	@Column(nullable = false)
-	private String Status;
+	private String status;
 	@Column(nullable = false)
 	private String code;
 	@Column(nullable = false)
@@ -29,7 +29,7 @@ public class Producto {
 		this.name = name;
 		this.description = description;
 		this.img = img;
-		Status = status;
+		this.status = status;
 		this.code = code;
 		this.price = price;
 	}
@@ -70,11 +70,11 @@ public class Producto {
 	}
 
 	public String getStatus() {
-		return Status;
+		return status;
 	}
 
 	public void setStatus(String status) {
-		Status = status;
+		this.status = status;
 	}
 
 	public String getCode() {

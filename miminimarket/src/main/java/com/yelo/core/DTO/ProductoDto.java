@@ -13,7 +13,7 @@ public class ProductoDto {
 	@NotNull
 	private String img;
 	@NotNull
-	private String Status;
+	private String status;
 	@NotNull
 	private String code;
 	@NotNull
@@ -23,7 +23,7 @@ public class ProductoDto {
 		this.name = name;
 		this.description = description;
 		this.img = img;
-		Status = status;
+		this.status = status;
 		this.code = code;
 		this.price = price;
 	}
@@ -56,11 +56,11 @@ public class ProductoDto {
 	}
 
 	public String getStatus() {
-		return Status;
+		return status;
 	}
 
 	public void setStatus(String status) {
-		Status = status;
+		this.status = status;
 	}
 
 	public String getCode() {

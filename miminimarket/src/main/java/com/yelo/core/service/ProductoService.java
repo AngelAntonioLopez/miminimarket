@@ -39,11 +39,15 @@ public class ProductoService {
 	}
 	
 	public void save(Producto producto) {
-		while(existByCode(producto.getCode())) {
+		while(!existByCode(producto.getCode())) {
 			producto.setCode(generateCode());
+			System.out.println("code cambiado");
 		}
 		productoRepository.save(producto);
 	}
+	
+	
+	
 	
 	public void delete(int id) {
 		productoRepository.deleteById(id);;
@@ -54,11 +58,11 @@ public class ProductoService {
 	}
 	
 	public boolean existByName(String name) {
-		return productoRepository.existByName(name);
+		return productoRepository.existsByName(name);
 	}
 	
 	public boolean existByCode(String code) {
-		return productoRepository.existByCode(code);
+		return productoRepository.existsByCode(code);
 	}
 	
 	public String generateCode() {
@@ -73,7 +77,8 @@ public class ProductoService {
             alfac += alfa.charAt(forma); 
         }
         numero=(int)(aleatorio.nextDouble() * 99+100);
-        cadena=cadena+alfac+numero;
+        cadena=alfac+numero;
+        
         return cadena;
 	}
 
