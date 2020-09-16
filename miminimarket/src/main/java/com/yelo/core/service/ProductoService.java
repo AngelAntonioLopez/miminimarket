@@ -39,7 +39,7 @@ public class ProductoService {
 	}
 	
 	public void save(Producto producto) {
-		while(!existByCode(producto.getCode())) {
+		while(existByCode(producto.getCode())) {
 			producto.setCode(generateCode());
 			System.out.println("code cambiado");
 		}
@@ -48,9 +48,8 @@ public class ProductoService {
 	
 	
 	
-	
 	public void delete(int id) {
-		productoRepository.deleteById(id);;
+		productoRepository.deleteById(id);
 	}
 	
 	public boolean existById(int id) {

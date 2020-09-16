@@ -1,10 +1,18 @@
 package com.yelo.core.Entity;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
 
 @Entity
@@ -25,6 +33,8 @@ public class Producto {
 	@Column(nullable = false)
 	private double price;
 	
+
+	
 	public Producto(String name, String description, String img, String status, String code, double price) {
 		this.name = name;
 		this.description = description;
@@ -32,6 +42,10 @@ public class Producto {
 		this.status = status;
 		this.code = code;
 		this.price = price;
+	}
+
+	public Producto(int id) {
+		this.id = id;
 	}
 
 	public Producto() {
@@ -92,6 +106,10 @@ public class Producto {
 	public void setPrice(double price) {
 		this.price = price;
 	}
+
+	
+	
+	
 	
 	
 	

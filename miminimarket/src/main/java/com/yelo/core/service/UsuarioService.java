@@ -39,7 +39,6 @@ public class UsuarioService {
 		return usuarioRepository.findByEmail(email);
 	}
 	
-	
 	public void save(Usuario usuario) {
 		usuarioRepository.save(usuario);
 	}

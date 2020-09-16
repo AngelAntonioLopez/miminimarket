@@ -35,7 +35,7 @@ public class ProductoController {
 	@Autowired
 	ProductoService productoService;
 	
-	@GetMapping("/list")
+	@GetMapping("/lista")
 	public ResponseEntity<List<Producto>>list(){
 		List<Producto> lista = productoService.list();
 		return new ResponseEntity<List<Producto>>(lista, HttpStatus.OK);
@@ -58,7 +58,7 @@ public class ProductoController {
 		return new ResponseEntity<Page<Producto>>(pgProducto, HttpStatus.OK);
 	}
 	
-	@GetMapping("/detail/{id}")
+	@GetMapping("/producto/{id}")
 	public ResponseEntity<Producto> getById(@PathVariable("id") int id){
 		if(!productoService.existById(id)){
 			return new ResponseEntity(new Mensaje("No existe ese producto"), HttpStatus.NOT_FOUND);
@@ -74,6 +74,16 @@ public class ProductoController {
 			return new ResponseEntity(new Mensaje("No existe ese producto"), HttpStatus.NOT_FOUND);
 		}else {
 			Producto producto = productoService.getByName(nombre).get();
+			return new  ResponseEntity<Producto>(producto, HttpStatus.OK);
+		}
+	}
+	
+	@GetMapping("/code/{code}")
+	public ResponseEntity<Producto> getByCode(@PathVariable("code") String code){
+		if(!productoService.existByCode(code)) {
+			return new ResponseEntity(new Mensaje("No existe ese producto"), HttpStatus.NOT_FOUND);
+		}else {
+			Producto producto = productoService.getByCode(code).get();
 			return new  ResponseEntity<Producto>(producto, HttpStatus.OK);
 		}
 	}
